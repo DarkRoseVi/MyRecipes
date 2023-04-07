@@ -1,0 +1,86 @@
+﻿<Page x:Class="MyRecipes.Pages.IngridientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MyRecipes.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="345" d:DesignWidth="705"
+      Title="IngridientPage">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <ListView x:Name="IngridientList">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" Height="40">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
+
+                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Text="{Binding CostOFUnit}"/>
+
+                            <TextBlock VerticalAlignment="Center" Grid.Column="2">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="AvailableCount"/>
+                                        <Binding Path="Unit.Name"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+
+                            <Grid Grid.Column="3">
+
+                                <StackPanel VerticalAlignment="Center">
+                                    
+                                    <TextBlock Text="Редактировать" Foreground="#FF9DA2FF" TextDecorations="Underline"/>
+                                    <TextBlock Text="Удалить" Foreground="#FFB82924" TextDecorations="Underline"/>
+                                    
+                                </StackPanel>
+
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+
+            <Button x:Name="FirstListBTN" Margin="3" Content="&lt;&lt;" Width="20" Height="20"/>
+
+            <Button x:Name="BackListBTN" Margin="3" Content="&lt;" Width="20" Height="20"/>
+
+            <TextBlock x:Name="NumberPage"  FontSize="17"></TextBlock>
+
+            <Button x:Name="NextListBTN" Margin="3"  Content="&gt;" Width="20" Height="20"/>
+
+            <Button x:Name="LastListBTN" Margin="3" Content="&gt;&gt;" Width="20" Height="20"/>
+
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
+
+            <Button x:Name="OneBtn" Margin="5" Content="1" Width="20"></Button>
+            <Button x:Name="TwoBtn"  Margin="5" Content="2" Width="20"></Button>
+            <Button x:Name="ThreeBtn" Margin="5" Content="3" Width="20"></Button>
+            <Button x:Name="FourBtn"  Margin="5" Content="4" Width="20"></Button>
+
+        </StackPanel>
+
+        <Button Grid.Row="1" Margin="5" x:Name="AddMenuBTN" Content="+" HorizontalAlignment="Right" Width="20" Height="20" Click="AddMenuBTN_Click"/>
+
+    </Grid>
+</Page>
